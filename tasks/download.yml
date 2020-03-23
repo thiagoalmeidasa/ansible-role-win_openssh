@@ -13,7 +13,7 @@
     - name: get latest release version
       win_uri:
         url: https://github.com/PowerShell/Win32-OpenSSH/releases/latest
-        follow_redirects: safe
+        follow_redirects: all
         method: HEAD
       register: pri_openssh_latest_redirect
 
@@ -33,6 +33,7 @@
   win_get_url:
     url: '{{ opt_openssh_url }}'
     dest: '{{ opt_openssh_temp_path }}\OpenSSH-Win.zip'
+    follow_redirects: all
   when: opt_openssh_zip_file is not defined
 
 - name: create temp zip output folder
